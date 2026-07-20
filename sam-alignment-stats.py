@@ -12,6 +12,7 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
 
-    sequence = parser.read_sam(args.file)
+    reads = parser.read_sam(args.file)
+    stats = parser.parse_reads(reads)
 
-    print(sequence)
+    print(stats)

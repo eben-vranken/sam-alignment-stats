@@ -25,5 +25,12 @@ def read_sam(file_path):
 
     return reads
 
-def parse_sam():
-    pass
+def parse_reads(reads):
+    alignment_stats = {}
+
+    alignment_stats["Total Reads"] = len(reads)
+    alignment_stats["Unmapped Read Count"] = sum(read["FLAG"] & 4 != 0 for read in reads)
+    alignment_stats["Mapped Read Count"] = sum(read["FLAG"] & 4 == 0 for read in reads)
+    alignment_stats["Percentages"] = (alignment_stats["Mapped Read Count"] / alignment_stats["Total Reads"]) * 100
+
+    return alignment_stats
