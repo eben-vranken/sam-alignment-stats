@@ -33,4 +33,14 @@ def parse_reads(reads):
     alignment_stats["Mapped Read Count"] = sum(read["FLAG"] & 4 == 0 for read in reads)
     alignment_stats["Percentages"] = (alignment_stats["Mapped Read Count"] / alignment_stats["Total Reads"]) * 100
 
+    chromosone_counts = {}
+
+    for read in reads:
+        if read["RNAME"] in chromosone_counts:
+            chromosone_counts[read["RNAME"]] += 1
+        else:
+            chromosone_counts[read["RNAME"]] = 1
+
+    alignment_stats["Reference Counts"] = chromosone_counts
+
     return alignment_stats
