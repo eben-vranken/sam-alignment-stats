@@ -36,6 +36,8 @@ def parse_reads(reads):
     chromosone_counts = {}
 
     for read in reads:
+        if read["RNAME"] is "*":
+            continue
         if read["RNAME"] in chromosone_counts:
             chromosone_counts[read["RNAME"]] += 1
         else:
