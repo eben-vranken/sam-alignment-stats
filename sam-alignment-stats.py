@@ -15,4 +15,6 @@ if __name__ == "__main__":
     reads = parser.read_sam(args.file)
     stats = parser.parse_reads(reads)
 
-    print(stats)
+    for key, value in stats.items():
+        spaces = " " * (30 - len(key))
+        print(f"{key}:{spaces}{value}")
